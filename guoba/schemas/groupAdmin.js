@@ -70,6 +70,26 @@ export default [
     }
   },
   {
+    field: "groupAdmin.essenceEnable",
+    label: "精华消息加/移精功能",
+    component: "Switch"
+  },
+  {
+    field: "groupAdmin.essencePer",
+    label: "精华消息使用权限",
+    bottomHelpMessage: "白名单用户不受此限制",
+    component: "RadioGroup",
+    required: true,
+    componentProps: {
+      options: [
+        { label: "所有人", value: "all" },
+        { label: "管理", value: "admin" },
+        { label: "群主", value: "owner" },
+        { label: "主人", value: "master" }
+      ]
+    }
+  },
+  {
     component: "Divider",
     label: "群管投票禁言设置"
   },

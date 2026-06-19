@@ -53,6 +53,15 @@ groupAddNotice:
     - 123465
   msg: 有一个加群通知，快去看看喵~
 
+# 精华消息权限 (设精/移精)
+# all: 所有人
+# admin: 管理员 + 群主 + 主人 (默认)
+# owner: 群主 + 主人
+# master: 主人
+# 设置为 false 或注释可禁用精华消息功能
+essenceEnable: true
+essencePer: admin
+
 # 撤回消息权限
 # all: 所有人
 # admin: 管理员 + 群主 + 主人

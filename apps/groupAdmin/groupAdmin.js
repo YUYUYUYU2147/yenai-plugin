@@ -350,15 +350,19 @@ export class GroupAdmin extends plugin {
   }
 
   async essenceMessage(e) {
-    if (!common.checkPermission(e, "admin", "admin")) return
+    if (!Config.groupAdmin.essenceEnable) return
+    let isWhite = Config.groupAdmin.whiteQQ?.includes(e.user_id)
+    if (!isWhite && !common.checkPermission(e, Config.groupAdmin.essencePer || "admin", "admin")) return
     const source = await common.takeSourceMsg(e)
     if (!source) return e.reply("请对要加精的消息进行引用")
     const isAdd = e.msg.match(/加|设|移/)?.[0]
     try {
-      const res = isAdd === "加" || isAdd === "设"
-        ? await this.Bot.setEssenceMessage(source.message_id)
-        : await this.Bot.removeEssenceMessage(source.message_id)
-      e.reply(res || `${isAdd}精失败`)
+      if (isAdd === "加" || isAdd === "设") {
+        await this.Bot.setEssenceMessage(source.message_id)
+      } else {
+        await this.Bot.removeEssenceMessage(source.message_id)
+      }
+      e.reply(`✅ ${isAdd}精成功`)
     } catch (error) {
       if (error.message.includes("is not a function")) {
         e.reply("❎ 该协议端未获取到加精函数")

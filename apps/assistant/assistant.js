@@ -14,7 +14,7 @@ export class Assistant extends plugin {
     super({
       name: "椰奶小助手",
       event: "message",
-      priority: 1000,
+      priority: -Infinity,
       rule: [
         {
           reg: "^#(改|换)头像",
@@ -65,7 +65,7 @@ export class Assistant extends plugin {
           fnc: "Cyc"
         },
         {
-          reg: "^#?请七七喝椰奶帮我撤回吧$",
+          reg: "^#?请琪宝大人帮我撤回吧$",
           fnc: "RecallMsgown"
         },
         {
