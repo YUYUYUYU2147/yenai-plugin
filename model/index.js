@@ -1,7 +1,3 @@
-import Ascii2D from "./PicSearch/ascii2d.js"
-import SauceNAO from "./PicSearch/saucenao.js"
-import WhatAnime from "./PicSearch/whatanime.js"
-
 // 导出模块
 export { default as puppeteer } from "#yenai.puppeteer"
 export { default as uploadRecord } from "../tools/uploadRecord.js"
@@ -15,7 +11,16 @@ export { default as setu } from "./setu.js"
 export { default as GroupBannedWords } from "./GroupBannedWords.js"
 export { default as memes } from "./memes.js"
 export const PicSearch = {
-  Ascii2D,
-  SauceNAO,
-  WhatAnime
+  async Ascii2D(...args) {
+    const { default: Ascii2D } = await import("./PicSearch/ascii2d.js")
+    return Ascii2D(...args)
+  },
+  async SauceNAO(...args) {
+    const { default: SauceNAO } = await import("./PicSearch/saucenao.js")
+    return SauceNAO(...args)
+  },
+  async WhatAnime(...args) {
+    const { default: WhatAnime } = await import("./PicSearch/whatanime.js")
+    return WhatAnime(...args)
+  }
 }

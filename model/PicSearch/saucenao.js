@@ -2,7 +2,6 @@ import _ from "lodash"
 import { Config } from "../../components/index.js"
 import sagiri from "../../tools/sagiri.js"
 import request from "../../lib/request/request.js"
-import Ascii2D from "./ascii2d.js"
 
 /**
  * SauceNAO搜图
@@ -47,6 +46,7 @@ export default async function doSearch(url) {
   let { SauceNAOMinSim, useAscii2dWhenLowAcc } = Config.picSearch
   if ((maxSimilarity < SauceNAOMinSim) && useAscii2dWhenLowAcc) {
     message.push(`SauceNAO 相似度 ${maxSimilarity}% 过低，使用Ascii2D进行搜索`)
+    const { default: Ascii2D } = await import("./ascii2d.js")
     await Ascii2D(url)
       .then(res => message.push(...res.color, ...res.bovw))
       .catch(err => message.push(err.stack))

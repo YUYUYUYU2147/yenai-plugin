@@ -43,10 +43,10 @@ Bot.on?.("request", async (e) => {
             flag: e.flag,
             sub_type: e.sub_type
           }), { EX: 3600 })
-          if (cfg.other.autoQuit <= 0) {
-            msg.push("----------------\n可引用该消息回复\"同意\"或\"拒绝\"")
-          } else {
+          if (Number(cfg.other.autoGroup) === 1) {
             msg.push("Tip：已被 Yunzai 自动处理")
+          } else {
+            msg.push("----------------\n可引用该消息回复\"同意\"或\"拒绝\"")
           }
           break
         case "add":
